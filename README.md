@@ -27,14 +27,21 @@ $ npm i
 
 ## 3) Configure o banco de dados
 
-1. Crie um banco de dados com colação a `utf8mb4_general_ci`
-1.1 Modifique o arquivo .env com os dados de acesso ao banco de dados, como exemplo abaixo:
+1. Crie um banco de dados com colação a `utf8mb4_general_ci`.
+
+2. Modifique o arquivo .env com os dados de acesso ao banco de dados, como exemplo abaixo:
+
 DB_CONNECTION=mysql
+
 DB_HOST=127.0.0.1
+
 DB_PORT=3306
+
 DB_DATABASE=nome-do-seu-banco
+
 DB_USERNAME=nome-usuário-do-banco
-DB_PASSWORD=sua-senha 0u vazio
+
+DB_PASSWORD=sua-senha ou vazio
 
 ## 4) Execute as migrations
 
@@ -74,7 +81,7 @@ Instrução:
 
 ## 7) Acesse o site
 
-| Url | User | Password |
-| ------| ------ | ------ |
+| Url
+| ------
 | [http://test-clients.test](http://test-clients.test)
 
