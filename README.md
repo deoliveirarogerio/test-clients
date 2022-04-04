@@ -74,8 +74,8 @@ Instrução:
 
 ```conf
 <VirtualHost uniline.test:80>
-    DocumentRoot "C:/xampp/htdocs/clientes/uniline"
-    ServerName uniline.test
+    DocumentRoot "C:/xampp/htdocs/clientes/test-clients"
+    ServerName test-clients.test
 </VirtualHost>
 ```
 
