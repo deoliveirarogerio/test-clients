@@ -15,12 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
             $table->string('description');
             $table->decimal('price', $precision = 10, $scale = 2);
             $table->timestamps();
-
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('CASCADE');
         });
     }
 

@@ -20,10 +20,5 @@ class Product extends Model
     /**
      * @var string[]
      */
-    protected $fillable = ['description', 'client_id', 'price'];
-
-    public function client()
-    {
-        return $this->belongsTo(Client::class, 'client_id', 'id')->first();
-    }
+    protected $fillable = ['description', 'price'];
 }

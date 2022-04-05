@@ -11,10 +11,9 @@
         </div>
     @endif
     <div class="col-lg-6">
-        <form action="{{ route('clients.update', $client->id) }}" method="post">
+        <form action="{{ route('orders.update', $order->id) }}" method="post">
             @method('put')
-            @include('clients/_form/form')
+            @include('orders/_form/form')
         </form>
     </div>
-
 @endsection

@@ -23,10 +23,11 @@ class StoreUpdateClientRequest extends FormRequest
      */
     public function rules()
     {
+        $id =$this->segment(2);
         return [
-            'name' => 'required|min:3|max:160',
-            'cpf' => 'min:11',
-            'email' => 'email'
+            'name' => 'required|string|min:3',
+            'cpf' => "required|min:11|unique:clients,cpf,{$id},id",
+            'email' => "sometimes|required|email|unique:clients,email,{$id},id"
         ];
     }
 
@@ -35,9 +36,11 @@ class StoreUpdateClientRequest extends FormRequest
         return [
             'name.required' => 'Nome é obrigatório',
             'name.min' => 'Ops! Precisa informar pelo menos 3 caractéres',
-            'name.max' => 'Ops! Atingiu o limite máximo de caractéres',
+            'cpf.required' => 'Campo CPF é de preenchimento obrigatório',
             'cpf.min' => 'Ops! Preenchimento incorreto, utilize apenas números e no máximo 13 caractéres',
-            'email' => 'E-mail é um campo obrigatório',
+            'cpf.unique' => 'CPF já cadastrado no sistema, por favor verifique os dados',
+            'email.required' => 'E-mail é um campo obrigatório',
+            'email.unique' => 'E-mail já cadastrado no sistema, por favor tente outro',
             'email.email' => 'Dados do e-mail incorretos',
         ];
     }

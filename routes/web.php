@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
+use \App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::group(['prefix' => 'clientes'], function () {
     Route::delete('/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
 });
 
-Route::group(['prefix' => 'products'], function () {
+Route::group(['prefix' => 'produtos'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
 //Route::get('/clientes/(id}', [clientController::class, 'show']);
     Route::get('/criar', [ProductController::class, 'create'])->name('products.create');
@@ -35,8 +36,15 @@ Route::group(['prefix' => 'products'], function () {
     Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 
-
-
+Route::group(['prefix' => 'pedidos'], function () {
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/criar', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/cliente/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/editar/{id}', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+});
 
 Route::get('/', function () {
     return view('welcome');

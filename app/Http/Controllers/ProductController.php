@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateProductRequest;
 use App\Models\Product;
-use App\Models\Client;
 use Illuminate\Http\Request;
 
+/**
+ * Controller Products
+ */
 class ProductController extends Controller
 {
     /**
@@ -16,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('products.index', [
-            'products' => Product::paginate(2),
+            'products' => Product::all(),
         ]);
     }
 
@@ -27,9 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create', [
-            'clients' => Product::all(),
-        ]);
+        return view('products.create');
     }
 
     /**
@@ -38,25 +39,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProductRequest $request)
     {
         $data = $request->all();
         Product::create($data);
-
+//        dd($data);
         return redirect()
             ->route('products.index')
-            ->with('message', 'Cliente criado com sucesso');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
+            ->with('message', 'Produto criado com sucesso');
     }
 
     /**
@@ -72,7 +62,6 @@ class ProductController extends Controller
         }
 
         return view('products.edit', [
-            'clients' => Client::get(),
             'product' => $product
         ]);
     }
@@ -81,12 +70,12 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Product  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateProductRequest $request, $id)
     {
-        if (!$product = Product::find($id)) {
+        if (!$product = Product::findOrFail($id)) {
             return redirect()->back();
         }
 
@@ -113,6 +102,6 @@ class ProductController extends Controller
 
         return redirect()
             ->route('products.index')
-            ->with('message', 'Client Deletado com sucesso');
+            ->with('message', 'Produto Deletado com sucesso');
     }
 }

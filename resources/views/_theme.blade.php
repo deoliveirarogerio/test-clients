@@ -9,7 +9,13 @@
 </head>
 <body>
 @include('_partials/navigation')
+
 <div class="container py-5">
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     @yield('content')
 </div>
 

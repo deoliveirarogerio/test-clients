@@ -28,6 +28,16 @@
                         <li><a class="dropdown-item" href="{{ route('products.create') }}">Novo Produto</a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pedidos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ route('orders.index') }}">Listar Pedidos</a></li>
+                        <li><a class="dropdown-item" href="{{ route('orders.create') }}">Novo Pedido</a></li>
+                    </ul>
+                </li>
             </ul>
             {{--            <form class="d-flex">--}}
             {{--                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--}}

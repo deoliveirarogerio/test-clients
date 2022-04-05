@@ -10,11 +10,9 @@
             </ul>
         </div>
     @endif
-    <div class="col-lg-6">
-        <form action="{{ route('clients.update', $client->id) }}" method="post">
-            @method('put')
-            @include('clients/_form/form')
-        </form>
+    <form action="{{ route('orders.store') }}" method="post">
+        @include('orders/_form/form')
+        </div>
+    </form>
     </div>
-
 @endsection
