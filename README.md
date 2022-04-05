@@ -48,6 +48,11 @@ DB_PASSWORD=sua-senha ou vazio
 ```sh
 $ php artiasan make:migrate
 ```
+## 4.1) Execute as Seeder's
+
+```sh
+$ php artiasan make:migrate:refresh --seed
+```
 
 ## 5) Modifique o arquivo hosts no Windows
 
