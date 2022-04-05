@@ -20,17 +20,17 @@
                             <th scope="row">{{ $product->id }}</th>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->price }}</td>
-                            <td style="display: inline-flex;"><a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info" title="Editar Cliente">Editar</a>
-                                <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                            <td style="display: inline-flex;"><a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-info" title="Editar Produto">Editar</a>
+                                <form onsubmit="return confirm('Tem certeza que deseja excluir?');" action="{{ route('products.destroy', $product->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" style="margin-left: 5px">Apagar</button>
+                                    <button style="margin-left: 5px" type="submit" class="btn btn-sm btn-danger">
+                                        Apagar
+                                    </button>
                                 </form>
-                        </tr>
                     @endforeach
                     </tbody>
                 </table>
-                {{ $products->links() }}
             </div>
         </main>
     @endif

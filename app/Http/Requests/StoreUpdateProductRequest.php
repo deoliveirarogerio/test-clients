@@ -24,18 +24,18 @@ class StoreUpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required|min:3|max:160',
-            'price' => 'required'
+            'description' => 'required|min:3|max:255',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/'
         ];
     }
 
     public function messages()
     {
         return [
-            'description.required' => 'Campo Descrição é obrigatório',
+            'description.required' => 'Campo Descrição é de preenchimento obrigatório',
             'description.min' => 'Ops! Precisa informar pelo menos 3 caractéres',
-            'description.max' => 'Ops! Precisa informar pelo menos 160n caractéres',
-            'price.required' => 'Campo preço é de preenchimento obrigatório'
+            'description.max' => 'Ops! Precisa informar até 255 caractéres',
+            'price.required' => 'Campo Preço é de preenchimento obrigatório'
         ];
     }
 }

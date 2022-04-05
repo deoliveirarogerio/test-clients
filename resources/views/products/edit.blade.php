@@ -9,8 +9,7 @@
     <div class="col-lg-6">
         <form action="{{ route('products.update', $product->id) }}" method="post">
             @method('PUT')
-            @include('_partials/form')
-            <button type="submit" class="btn btn-primary">Atualizar</button>
+            @include('products/_form/form')
         </form>
     </div>
 

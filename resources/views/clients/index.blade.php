@@ -24,10 +24,12 @@
                         <td>{{ $client->cpf }}</td>
                         <td>{{ $client->email }}</td>
                         <td style="display: inline-flex;"><a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-info" title="Editar Cliente">Editar</a>
-                            <form action="{{ route('clients.destroy', $client->id) }}" method="post">
+                            <form onsubmit="return confirm('Tem certeza que deseja excluir?');" action="{{ route('clients.destroy', $client->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger" style="margin-left: 5px">Apagar</button>
+                                <button style="margin-left: 5px" type="submit" class="btn btn-sm btn-danger">
+                                    Apagar
+                                </button>
                             </form>
                     </tr>
                     @endforeach

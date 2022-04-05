@@ -17,9 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('product_id');
-            $table->integer('product_number');
+            $table->integer('order_number');
             $table->date('purchase_date');
             $table->integer('amount');
+            $table->string('status')->default('aberto');
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('CASCADE');

@@ -4,20 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateClientRequest;
 use App\Models\Client;
-use Illuminate\Http\Request;
+use App\Models\Product;
 
+/**
+ * Controller Client's
+ */
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('clients.index', [
-                'clients' => Client::all(),
-            ]);
+            'clients' => Client::all(),
+        ]);
     }
 
     /**
@@ -27,14 +29,15 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        return view('clients.create', [
+            'clients' => Client::all(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreUpdateClientRequest $request)
     {
@@ -44,7 +47,6 @@ class ClientController extends Controller
         return redirect()
             ->route('clients.index')
             ->with('message', 'Cliente criado com sucesso');
-
     }
 
     /**
@@ -53,16 +55,11 @@ class ClientController extends Controller
      * @param  \App\Models\Client $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Client $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -76,7 +73,6 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function update(StoreUpdateClientRequest $request, $id)
     {
@@ -89,24 +85,23 @@ class ClientController extends Controller
 
         return redirect()
             ->route('clients.index')
-            ->with('message', 'Client Atualizado com sucesso');
+            ->with('message', 'Cliente Atualizado com sucesso');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Client  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (!$client = Post::find($id))
+        if (!$client = Client::find($id))
             return redirect()->route('posts.index');
 
         $client->delete();
 
         return redirect()
             ->route('clients.index')
-            ->with('message', 'Client Deletado com sucesso');
+            ->with('message', 'Cliente Deletado com sucesso');
     }
 }
