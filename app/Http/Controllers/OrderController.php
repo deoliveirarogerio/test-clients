@@ -13,10 +13,9 @@ use Illuminate\Http\Request;
  */
 class OrderController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -26,9 +25,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -39,15 +36,12 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreUpdateOrderRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreUpdateOrderRequest $request)
     {
         $data = $request->all();
-        strtolower($request->status);
         Order::create($data);
 
         return redirect()
@@ -56,12 +50,10 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
         // $post = Post::where('id', $id)->first();
         $order = Order::findOrFail($id);
@@ -74,12 +66,10 @@ class OrderController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $order = Order::findOrFail($id);
         $clients = Client::get();
@@ -89,13 +79,11 @@ class OrderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $id
-     * @return \Illuminate\Http\Response
+     * @param StoreUpdateOrderRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(StoreUpdateOrderRequest $request, $id)
+    public function update(StoreUpdateOrderRequest $request, int $id)
     {
         if (!$order = Order::findOrFail($id)) {
             return redirect()->back();
@@ -110,12 +98,10 @@ class OrderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         if (!$order = Order::find($id))
             return redirect()->route('orders.index');
